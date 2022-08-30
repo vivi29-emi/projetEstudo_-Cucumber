@@ -16,7 +16,7 @@ Quando efetua um saque R$ 100
 Entao o saldo da conta reduz R$ 300
 
 
-Cenario: Cliente efetua um deposito e tem rendimento na conta Poupança
+Cenario: Cliente efetua deposito e tem rendimento na conta Poupança
 
 Dado que "cliente_Id" 
 Quando deposita R$ 100 no dia 30 é aplicado o rendimento 0,5 porcento
