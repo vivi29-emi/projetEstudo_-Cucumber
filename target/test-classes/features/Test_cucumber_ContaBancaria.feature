@@ -4,16 +4,23 @@ Funcionalidade: Teste Conta Bancaria
 
 Cenario: Cliente efetua um deposito
 
-Dado cliente "Maria de Lurdes" tem de saldo R$ 200
-Quando deposita um valor R$ 200
-Entao o valor é depositado e multiplicado tendo o total de R$ 400 na sua conta com sucesso
+Dado "cliente_id" tem o saldo R$ 200
+Quando deposita R$ 200
+Entao o saldo e alterado R$ 400
 
 
 Cenario: Cliente efetua um saque
 
-Dado que cliente "Maria de Lurdes" tem de saldo R$ 400
-Quando efetua um saque no valor R$ 100
-Entao o valor é  subtraido tendo um total de R$ 300 na sua conta com sucesso 
+Dado que "clinte_id" possui o saldo R$ 400
+Quando efetua um saque R$ 100
+Entao o saldo da conta reduz R$ 300
+
+
+Cenario: Cliente efetua um deposito e tem rendimento na conta Poupança
+
+Dado que "cliente_Id" 
+Quando deposita R$ 100 no dia 30 é aplicado o rendimento 0,5 porcento
+Então o saldo  vai para R$ 150
 
 
  
