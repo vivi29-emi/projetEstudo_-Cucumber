@@ -14,19 +14,21 @@ public class TestCucumberContaBancariaSteps {
 	
 	private ContaBancaria conta;
 	private ContaPoupanca contaPoupanca;
-
 	
-	@Dado("{string} tem o saldo R$ {double}")
-	public void cliente_tem_de_saldo_r$(String cliente, Double saldoConta) {
+	
+
+	// Teste quando cliente efetua um deposito
+	
+	@Dado("cliente tem um saldo R${int}")
+	public void cliente_tem_um_saldo_r$(Integer saldoConta){
         
 		conta = new ContaBancaria ();
-		conta.setNomeCliente(cliente);
 		conta.setSaldo(saldoConta);
 	  
 	}
 	
-	@Quando("deposita R$ {double}")
-	public void deposita_r$(Double valor) {
+	@Quando("deposita R${int}")
+	public void deposita_r$(Integer valor) {
 		 
 		 
 		 if (conta.depositar(valor)) {
@@ -39,23 +41,27 @@ public class TestCucumberContaBancariaSteps {
 	  
 	}
 
-
-	@Entao("o saldo e alterado R$ {double}")
-	public void o_saldo_e_alterado(Double saldoBancaria) {
+	@Entao("o saldo e alterado R${double}")
+	public void o_saldo_e_alterado_r$(Double saldoBancaria){
 	 
 	assertThat(conta.getSaldo(),is(saldoBancaria));
 	}
+	
+	
+	
 
-	@Dado("que {string} possui o saldo R$ {double}")
-	public void que_possui_o_saldo_r$(String cliente, Double saldoConta) {
+	// Teste quando cliente efetua um saque
+	
+	
+	@Dado("que cliente possui o saldo R${int}")
+	public void que_cliente_possui_o_saldo_r$(Integer saldoConta) {
 		conta = new ContaBancaria ();
-		conta.setNomeCliente(cliente);
 		conta.setSaldo(saldoConta);
 	   
 	}
 
-	@Quando("efetua um saque R$ {double}")
-	public void efetua_um_saque_r$(Double valor) {
+	@Quando("efetua um saque R${int}")
+	public void efetua_um_saque_r$(Integer valor) {
 	 
 		 if (conta.sacar(valor)) {
 			 
@@ -66,24 +72,25 @@ public class TestCucumberContaBancariaSteps {
 			}
 	}
 
-	@Entao("o saldo da conta reduz R$ {double}")
-	public void o_saldo_da_conta_reduz(Double saldoBancario) {
+	@Entao("o saldo da conta reduz R${double}")
+	public void o_saldo_da_conta_reduz_r$(Double saldoBancario) {
 	   
 		
 		assertThat(conta.getSaldo(),is(saldoBancario));
 		
 	}
 	
+	
 	// Teste de deposito em conta poupança e tem rendimento 
 	
-	@Dado("que {string}")
-	public void que(String cliente) {
+	@Dado("que cliente")
+	public void que() {
 		contaPoupanca = new ContaPoupanca();
-		contaPoupanca.setNomeCliente(cliente);
+		
 	    
 	}
-	@Quando("deposita R$ {int} no dia {int} é aplicado o rendimento {double} porcento")
-	public void deposita_R$_no_dia_e_aplicado_o_rendimento_porcento(Integer valor, Integer diaRendiment, Double txRendiment) {
+	@Quando("deposita R${int}  no {int} é aplicado o rendimento {double}")
+	public void deposita_r$_no_é_aplicado_o_rendimento(Integer valor, Integer diaRendiment, Double txRendiment) {
 		contaPoupanca.depositar(valor);
 		contaPoupanca.setDiaRendimento(diaRendiment);
 		
@@ -97,12 +104,17 @@ public class TestCucumberContaBancariaSteps {
 	
 		
 	}
-	@Então("o saldo  vai para R$ {double}")
-	public void o_saldo_vai_para_R$(Double saldoPoupanca) {
+	@Então("o saldo  vai para R${double}")
+	public void o_saldo_vai_para_r$(Double saldoPoupanca)  {
 	    
 		assertThat(contaPoupanca.getSaldo(),is(saldoPoupanca));
 		
 	}
+	
+
+	
+
+
 
 
 

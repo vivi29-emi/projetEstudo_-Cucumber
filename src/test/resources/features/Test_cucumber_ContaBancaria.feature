@@ -1,26 +1,44 @@
 #language:pt
 
+
 Funcionalidade: Teste Conta Bancaria
 
-Cenario: Cliente efetua um deposito
+Esquema do Cenário: Faz um deposito
 
-Dado "cliente_id" tem o saldo R$ 200
-Quando deposita R$ 200
-Entao o saldo e alterado R$ 400
+Dado cliente tem um saldo R$<Saldo>
+Quando deposita R$<Deposito>
+Entao o saldo e alterado R$<saldoFinal>
 
-
-Cenario: Cliente efetua um saque
-
-Dado que "clinte_id" possui o saldo R$ 400
-Quando efetua um saque R$ 100
-Entao o saldo da conta reduz R$ 300
+Exemplos:
+|  Saldo   |   Deposito  |saldoFinal|
+|   200    |      200    |     400  |
 
 
-Cenario: Cliente efetua deposito e tem rendimento na conta Poupança
+Esquema do Cenário: Faz um saque
 
-Dado que "cliente_Id" 
-Quando deposita R$ 100 no dia 30 é aplicado o rendimento 0,5 porcento
-Então o saldo  vai para R$ 150
+
+Dado que cliente possui o saldo R$<valorSaldo>
+Quando efetua um saque R$<valorSaque>
+Entao o saldo da conta reduz R$<valorFinal>
+
+Exemplos: 
+
+|valorSaldo| valorSaque  | valorFinal |
+|   400    |     100     |  300       |   
+
+
+Esquema do Cenário: Faz deposito e tem rendimento na conta Poupança
+
+Dado que cliente
+Quando deposita R$<vlDeposito>  no <dataRendimento> é aplicado o rendimento <taxRendimento>
+Então o saldo  vai para R$<vlFinalRend>
+
+Exemplos:
+
+|  vlDeposito  | dataRendimento |taxRendimento|vlFinalRend|
+|    100       |      5         |     0,5     |      150  | 
+
+
 
 
  
